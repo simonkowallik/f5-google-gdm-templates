@@ -1,12 +1,12 @@
 # Copyright 2018 F5 Networks All rights reserved.
 #
-# Version v1.3.1_simonkowallik_git.io/fAZZj
+# Version v1.5.0_simonkowallik_git.io/fAZZj
 
 imports:
-- path: f5-existing-stack-byol-3nic-changedmgmt-bigip.py
+- path: f5-existing-stack-byol-3nic-bigip.py
 resources:
 - name: bigip-3nic-setup
-  type: f5-existing-stack-byol-3nic-changedmgmt-bigip.py
+  type: f5-existing-stack-byol-3nic-bigip.py
   properties:
    region: <google cloud region>
    ### Google Region to deploy BIG-IP, for example us-west1
