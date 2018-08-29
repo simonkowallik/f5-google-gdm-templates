@@ -1,48 +1,44 @@
 # Copyright 2018 F5 Networks All rights reserved.
 #
-# Version v1.5.0
+# Version v1.3.1_simonkowallik_git.io/fAZZj
 
 imports:
-- path: f5-existing-stack-byol-3nic-bigip.py
+- path: f5-existing-stack-byol-3nic-changedmgmt-bigip.py
 resources:
 - name: bigip-3nic-setup
-  type: f5-existing-stack-byol-3nic-bigip.py
+  type: f5-existing-stack-byol-3nic-changedmgmt-bigip.py
   properties:
+   region: <google cloud region>
    ### Google Region to deploy BIG-IP, for example us-west1
-   region: <region>
+   zone: <google cloud zone>
    ### Google Zone in specified region to deploy BIG-IP, for example us-west1-a
-   availabilityZone1: <availability zone>
-   ### Specify network to use for management traffic
-   mgmtNetwork: <network>
-   ### Specify subnet to use for management traffic
-   mgmtSubnet: <subnet>
-   ### Specify Network name to for BIG-IP external application traffic
-   network1: <network>
-   ### Subnet of Network BIG-IP should use for externalapplication traffic
-   subnet1: <subnet>
-   ### Mask used for specified external application traffic subnet using prefix notation. ie '24'
-   mask1: '<mask prefix>'
-   ### Specify Network name to for BIG-IP internal application traffic
-   network2: dewpt3
-   ### Subnet of Network BIG-IP should use for internal application traffic
-   subnet2: subnet3
-   ### Mask used for specified internal application subnet using prefix notation. ie '24'
-   mask2: '24'
+   network0: <external VPC network>
+   ### VPC network for nic0 (external)
+   subnet0: <external VPC subnetnetwork>
+   ### VPC subnetwork for nic0
+   network1: <internal VPC network>
+   ### VPC network for nic1 (internal)
+   subnet1: <internal VPC subnetnetwork>
+   ### VPC subnetwork for nic1
+   network2: <management VPC network>
+   ### VPC network for nic2 (mgmt)
+   subnet2: <management VPC subnetnetwork>
+   ### VPC subnetwork for nic2
+   licenseKey1: '<eval-or-production-license>'
    ### BIG-IP license key
-   licenseKey1: '<lic key>'
+   imageName: <imagename-see-below>
    ### BIG-IP image, valid choices include:
    # f5-byol-bigip-13-1-1-0-0-4-all-2slot
    # f5-byol-bigip-13-1-1-0-0-4-ltm-2slot
-   imageName: <image name>
-   ### Instance type assigned to BIG-IP, example n1-standard-4.
    instanceType: n1-standard-4
-   ### BIG-IP Management Port, the default is 443
+   ### Instance type assigned to BIG-IP, example n1-standard-4. n1-standard-4 is the minimum for a 3nic setup!
    manGuiPort: '443'
+   ### BIG-IP Management Port, the default is 443
+   serviceAccount: ''
    ### If using service discovery, enter google service account to use for discovery. Leave single quotes with nothing between when not using service discovery.
-   serviceAccount: '<service account>'
+   tagName: ''
    ### If using service discovery, enter tag name used on servers for discovery. Leave single quotes with nothing between if not using service discovery.
-   tagName: '<tag>'
+   tagValue: ''
    ### If using service discovery, enter tag value used on servers for discovery. Leave single quotes with nothing between if not using service discovery.
-   tagValue: '<value>'
-   ### This deployment can send anonymous statistics to F5 to help us determine how to improve our solutions. If you enter **no** statistics are not sent.
    allowUsageAnalytics: 'yes'
+   ### This deployment can send anonymous statistics to F5 to help us determine how to improve our solutions. If you enter **no** statistics are not sent.
